@@ -3,6 +3,7 @@ import 'package:myshop/ui/products/product_detail_screen.dart';
 import 'package:myshop/ui/products/product_grid_tile.dart';
 import 'package:myshop/ui/products/product_overview_screen.dart';
 import 'package:myshop/ui/products/products_manager.dart';
+import 'package:myshop/ui/products/user_product_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
             secondary: Colors.deepOrange,
           )),
       home: const SafeArea(
-        child: ProductsOverviewScreen(),
+        child: UserProductsScreen(),
+        //child: ProductsOverviewScreen(),
         /* 
           child: ProductDetailScreen(
             //color: Colors.green,
