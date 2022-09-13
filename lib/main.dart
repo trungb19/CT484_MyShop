@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myshop/ui/products/product_detail_screen.dart';
+import 'package:myshop/ui/products/product_grid_tile.dart';
+import 'package:myshop/ui/products/product_overview_screen.dart';
 import 'package:myshop/ui/products/products_manager.dart';
 
 void main() {
@@ -13,24 +15,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'My Shop',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            fontFamily: 'Lato',
-            // ColorScheme that can be used to configure color properties.
-            // ColorScheme create a color from a MeterialColor swatch.
-            colorScheme: ColorScheme.fromSwatch(
-              // primarySwatch are used for key components such as FAB, buttons, active states.
-              primarySwatch: Colors.purple,
-              // copyWith to create a new object with the same properties as original, but with some of the values changed.
-            ).copyWith(
-              secondary: Colors.deepOrange,
-            )),
-        home: SafeArea(
+      title: 'My Shop',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          fontFamily: 'Lato',
+          // ColorScheme that can be used to configure color properties.
+          // ColorScheme create a color from a MeterialColor swatch.
+          colorScheme: ColorScheme.fromSwatch(
+            // primarySwatch are used for key components such as FAB, buttons, active states.
+            primarySwatch: Colors.purple,
+            // copyWith to create a new object with the same properties as original, but with some of the values changed.
+          ).copyWith(
+            secondary: Colors.deepOrange,
+          )),
+      home: const SafeArea(
+        child: ProductsOverviewScreen(),
+        /* 
           child: ProductDetailScreen(
             //color: Colors.green,
             ProductManager().items[3],
           ),
-        ));
+        )*/
+      ),
+    );
   }
 }
