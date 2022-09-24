@@ -1,10 +1,13 @@
 //UserProductScreen hiển thị sản phẩm người dùng
 
 import 'package:flutter/material.dart';
+import 'package:myshop/ui/shared/app_drawer.dart';
 import 'user_product_list_tile.dart';
 import 'products_manager.dart';
 
 class UserProductsScreen extends StatelessWidget {
+  static const routeName = '/user-products';
+
   const UserProductsScreen({super.key});
 
   @override
@@ -18,6 +21,8 @@ class UserProductsScreen extends StatelessWidget {
           buildAddButton(),
         ],
       ),
+      //Thêm ở lab2
+      drawer: const AppDrawer(),
       body: RefreshIndicator(
         onRefresh: () async => print('Refresh products'),
         child: buildUserProductListView(productManager),
