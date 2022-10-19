@@ -1,7 +1,11 @@
 //UserProductListTile hiển thị thông tin và sửa, xóa
 
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../models/product.dart';
+import 'products_manager.dart';
 
 class UserProductListTile extends StatelessWidget {
   final Product product;
@@ -13,6 +17,7 @@ class UserProductListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //final productsManager = ProductsManager();
     return ListTile(
       title: Text(product.title),
       leading: CircleAvatar(
@@ -30,22 +35,33 @@ class UserProductListTile extends StatelessWidget {
     );
   }
 
-  buildEditButton(context) {
+  Widget buildDeleteButton(BuildContext context) {
     return IconButton(
-      onPressed: () async {
-        print('Delete a product');
-      },
       icon: const Icon(Icons.delete),
+      onPressed: () {
+        context.read<ProductsManager>().deleteProduct(product.id!);
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            const SnackBar(
+              content: Text(
+                'Product deleted',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+        //print('Delete a product');
+      },
       color: Theme.of(context).errorColor,
     );
   }
 
-  buildDeleteButton(context) {
+  buildEditButton(context) {
     return IconButton(
+      icon: const Icon(Icons.edit),
       onPressed: () {
         print('Go to edit product screen');
       },
-      icon: const Icon(Icons.edit),
       color: Theme.of(context).primaryColor,
     );
   }

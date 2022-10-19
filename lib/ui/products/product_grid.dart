@@ -1,8 +1,10 @@
 //ProductGrid hiển thị thông tin dạng lưới
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'product_grid_tile.dart';
 import 'products_manager.dart';
+import '../../models/product.dart';
 
 class ProductGrid extends StatelessWidget {
   //Biến lưu trạng thái yêu thích
@@ -12,10 +14,15 @@ class ProductGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //
-    final productsManager = ProductManager();
-    final products =
-        showFavorites ? productsManager.favoriteItems : productsManager.items;
+    //Đọc danh sách product
+    final productsManager = ProductsManager();
+    final products = context.select<ProductsManager, List<Product>>(
+        (productsManager) => showFavorites
+            ? productsManager.favoriteItems
+            : productsManager.items);
+
+    //final products =
+    //    showFavorites ? productsManager.favoriteItems : productsManager.items;
     return GridView.builder(
       padding: const EdgeInsets.all(10.0),
       itemCount: products.length,
