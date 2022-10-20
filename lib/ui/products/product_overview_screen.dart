@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:myshop/ui/cart/cart_screen.dart';
+import 'package:provider/provider.dart';
 import 'product_grid.dart';
 
 import '../cart/cart_manager.dart';
@@ -38,19 +39,21 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   }
 
   Widget buildShoppingCartIcon() {
-    return TopRightBadge(
-      data: CartManager().productCount,
-      child: IconButton(
-        icon: const Icon(
-          Icons.shopping_cart,
+    return Consumer<CartManager>(builder: (ctx, cartManager, child) {
+      return TopRightBadge(
+        data: CartManager().productCount,
+        child: IconButton(
+          icon: const Icon(
+            Icons.shopping_cart,
+          ),
+          onPressed: () {
+            //Thêm ở lab2
+            Navigator.of(ctx).pushNamed(CartScreen.routeName);
+            //print('Go to cart screen');
+          },
         ),
-        onPressed: () {
-          //Thêm ở lab2
-          Navigator.of(context).pushNamed(CartScreen.routeName);
-          print('Go to cart screen');
-        },
-      ),
-    );
+      );
+    });
   }
 
   Widget buildProductFilterMenu() {
