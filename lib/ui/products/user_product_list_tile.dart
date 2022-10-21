@@ -3,6 +3,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:myshop/ui/products/edit_product_screen.dart';
 import 'package:provider/provider.dart';
 import '../../models/product.dart';
 import 'products_manager.dart';
@@ -56,11 +57,15 @@ class UserProductListTile extends StatelessWidget {
     );
   }
 
-  buildEditButton(context) {
+  buildEditButton(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.edit),
       onPressed: () {
-        print('Go to edit product screen');
+        Navigator.of(context).pushNamed(
+          EditProductScreen.routeName,
+          arguments: product.id,
+        );
+        //print('Go to edit product screen');
       },
       color: Theme.of(context).primaryColor,
     );

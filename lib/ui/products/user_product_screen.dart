@@ -1,6 +1,7 @@
 //UserProductScreen hiển thị sản phẩm người dùng
 
 import 'package:flutter/material.dart';
+import 'package:myshop/ui/products/edit_product_screen.dart';
 import 'package:myshop/ui/shared/app_drawer.dart';
 import 'package:provider/provider.dart';
 import 'user_product_list_tile.dart';
@@ -19,7 +20,7 @@ class UserProductsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Your Product'),
         actions: <Widget>[
-          buildAddButton(),
+          buildAddButton(context),
         ],
       ),
       //Thêm ở lab2
@@ -45,10 +46,13 @@ class UserProductsScreen extends StatelessWidget {
     });
   }
 
-  Widget buildAddButton() {
+  Widget buildAddButton(BuildContext context) {
     return IconButton(
         onPressed: () {
-          print('Go to edit product screen');
+          Navigator.of(context).pushNamed(
+            EditProductScreen.routeName,
+          );
+          //print('Go to edit product screen');
         },
         icon: const Icon(Icons.add));
   }
