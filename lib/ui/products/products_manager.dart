@@ -108,9 +108,13 @@ class ProductsManager with ChangeNotifier {
   }
 
   //Thay đổi sản phẩm yêu thích
-  void toggleFavoriteStatus(Product product) {
+  Future<void> toggleFavoriteStatus(Product product) async {
     final savedStatus = product.isFavorite;
     product.isFavorite = !savedStatus;
+
+    if (!await _productsService.saveFavoritesStatus(product)) {
+      product.isFavorite = savedStatus;
+    }
   }
 
   //Xóa sản phẩm
