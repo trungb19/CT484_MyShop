@@ -82,13 +82,11 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   Widget buildProductFilterMenu() {
     return PopupMenuButton(
       onSelected: (FilterOptions selectedValue) {
-        setState(() {
-          if (selectedValue == FilterOptions.favorites) {
-            _showOnlyFavorites.value = true;
-          } else {
-            _showOnlyFavorites.value = false;
-          }
-        });
+        if (selectedValue == FilterOptions.favorites) {
+          _showOnlyFavorites.value = true;
+        } else {
+          _showOnlyFavorites.value = false;
+        }
       },
       icon: const Icon(
         Icons.more_vert,
